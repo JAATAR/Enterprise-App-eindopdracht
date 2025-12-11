@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalogus - Materiaalverhuur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/products">Materiaalverhuur</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="/cart">Winkelmandje</a>
+            <a class="nav-link" href="/checkout/orders">Mijn Bestellingen</a>
+            <form th:action="@{/logout}" method="post" class="d-inline">
+                <button class="btn btn-link nav-link" type="submit">Uitloggen</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Materiaal Catalogus</h1>
+
+    <!-- Zoekbalk -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <form th:action="@{/products}" method="get" class="d-flex">
+                <input type="text" name="search" class="form-control me-2"
+                       placeholder="Zoek materiaal..." th:value="${searchKeyword}">
+                <button type="submit" class="btn btn-primary">Zoeken</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Categorie filters -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="btn-group" role="group">
+                <a th:href="@{/products}" class="btn btn-outline-primary"
+                   th:classappend="${selectedCategoryId == null} ? 'active' : ''">
+                    Alle Categorieën
+                </a>
+                <a th:each="category : ${categories}"
+                   th:href="@{/products(categoryId=${category.id})}"
+                   class="btn btn-outline-primary"
+                   th:classappend="${selectedCategoryId == category.id} ? 'active' : ''"
+                   th:text="${category.name}">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product grid -->
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="product : ${products}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text" th:text="${product.description}"></p>
+                    <p class="text-muted" th:text="${product.category.name}"></p>
+                    <p class="fw-bold">€<span th:text="${product.pricePerDay}"></span> per dag</p>
+                    <p class="text-success" th:if="${product.stockQuantity > 0}">
+                        Beschikbaar: <span th:text="${product.stockQuantity}"></span>
+                    </p>
+                    <p class="text-danger" th:if="${product.stockQuantity == 0}">Niet op voorraad</p>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/products/{id}(id=${product.id})}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${#lists.isEmpty(products)}" class="alert alert-info">
+        Geen producten gevonden.
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
