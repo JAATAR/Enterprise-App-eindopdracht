@@ -1,7 +1,6 @@
 package be.kunstacademie.materiaalverhuur.repository;
 
 import be.kunstacademie.materiaalverhuur.model.CartItem;
-import be.kunstacademie.materiaalverhuur.model.Order;
 import be.kunstacademie.materiaalverhuur.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
-    List<Order> findByUser(User user);
+    List<CartItem> findByUser(User user);
 
-    List<Order> findByUserId(Long userId);
+    List<CartItem> findByUserId(Long userId);
 
-    List<Order> findByUserOrderByOrderDateDesc(User user);
+    void deleteByUserId(Long userId);
 }
