@@ -52,54 +52,6 @@ Dit is een **proof of concept** met een beperkte catalogus van ongeveer 10 diver
 
 ---
 
-## 📁 Project Structuur
-
-src/main/java/be/kunstacademie/materiaalverhuur/
-├── config/
-│ ├── SecurityConfig.java
-│ └── DataInitializer.java
-├── controller/
-│ ├── ProductController.java
-│ ├── CartController.java
-│ ├── AuthController.java
-│ ├── CheckoutController.java
-│ └── AdminController.java
-├── model/
-│ ├── Product.java
-│ ├── Category.java
-│ ├── User.java
-│ ├── CartItem.java
-│ ├── Order.java
-│ └── OrderItem.java
-├── repository/
-│ ├── ProductRepository.java
-│ ├── CategoryRepository.java
-│ ├── UserRepository.java
-│ ├── CartItemRepository.java
-│ └── OrderRepository.java
-├── service/
-│ ├── ProductService.java
-│ ├── CartService.java
-│ ├── UserService.java
-│ └── OrderService.java
-└── EnterpriseAppEindopdrachtApplication.java
-
-shell
-Copier le code
-
-### Frontend Templates
-src/main/resources/templates/
-├── catalog.html
-├── product-detail.html
-├── cart.html
-├── checkout.html
-├── confirmation.html
-├── login.html
-├── register.html
-└── orders.html
-
-yaml
-Copier le code
 
 ---
 
@@ -297,6 +249,7 @@ https://www.youtube.com/watch?v=ig8k_5nEov4
 
 YouTube Tutorial 2 — Spring Boot Security + BCrypt
 https://www.youtube.com/watch?v=gJrjgg1KVL4
+
 
 
 
