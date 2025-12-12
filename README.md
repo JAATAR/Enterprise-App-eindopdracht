@@ -189,7 +189,7 @@ Admin test endpoints:
 /admin/init-data
 
 /admin/delete-all
-
+```
 Bronnen & Tutorials
 Gebruikte Bronnen & Referenties
 🔹 Officiële Documentatie
@@ -297,6 +297,7 @@ https://www.youtube.com/watch?v=ig8k_5nEov4
 
 YouTube Tutorial 2 — Spring Boot Security + BCrypt
 https://www.youtube.com/watch?v=gJrjgg1KVL4
+
 
 
 
