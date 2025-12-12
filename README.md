@@ -190,9 +190,9 @@ Admin test endpoints:
 
 /admin/delete-all
 ```
-Bronnen & Tutorials
-Gebruikte Bronnen & Referenties
-🔹 Officiële Documentatie
+##  Bronnen & Tutorials
+###  Gebruikte Bronnen & Referenties
+-###🔹 Officiële Documentatie
 
 Spring Boot Documentation
 https://docs.spring.io/spring-boot/docs/current/reference/html/
@@ -297,6 +297,7 @@ https://www.youtube.com/watch?v=ig8k_5nEov4
 
 YouTube Tutorial 2 — Spring Boot Security + BCrypt
 https://www.youtube.com/watch?v=gJrjgg1KVL4
+
 
 
 
