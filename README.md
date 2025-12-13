@@ -1,6 +1,6 @@
 # Materiaalverhuur Platform - Kunstacademie
 
-## 📋 Project Overzicht
+##  Project Overzicht
 
 Dit project is een webapplicatie ontwikkeld voor een kunstopleiding waar studenten materiaal kunnen reserveren en huren voor hun projecten en eindwerken. Het platform biedt een gebruiksvriendelijke catalogus met diverse apparatuur zoals lampen, podiumelementen, lichtpanelen en kabels.
 
@@ -14,15 +14,15 @@ Dit is een **proof of concept** met een beperkte catalogus van ongeveer 10 diver
 
 ---
 
-## ✅ Functionele Vereisten (Volledig Geïmplementeerd)
+##  Functionele Vereisten (Volledig Geïmplementeerd)
 
-- ✅ **Volledige catalogus**: Overzicht van alle beschikbare materialen
-- ✅ **Categorie filtering**: Filteren op Belichting, Kabels, Controlepanelen en Podiumelementen
-- ✅ **Zoekfunctie**: Zoeken in productnamen en beschrijvingen
-- ✅ **Winkelmandje**: Toevoegen, verwijderen en beheren van reservaties
-- ✅ **Checkout systeem**: Bevestigingspagina met uniek reservatienummer
-- ✅ **Gebruikersregistratie**: Volledige registratie voor nieuwe studenten
-- ✅ **Veilig login systeem**: Spring Security met BCrypt password hashing en automatische salting
+-  **Volledige catalogus**: Overzicht van alle beschikbare materialen
+-  **Categorie filtering**: Filteren op Belichting, Kabels, Controlepanelen en Podiumelementen
+-  **Zoekfunctie**: Zoeken in productnamen en beschrijvingen
+-  **Winkelmandje**: Toevoegen, verwijderen en beheren van reservaties
+-  **Checkout systeem**: Bevestigingspagina met uniek reservatienummer
+-  **Gebruikersregistratie**: Volledige registratie voor nieuwe studenten
+-  **Veilig login systeem**: Spring Security met BCrypt password hashing en automatische salting
 
 ---
 
@@ -52,7 +52,7 @@ Dit is een **proof of concept** met een beperkte catalogus van ongeveer 10 diver
 
 ---
 
-## 📁 Project Structuur
+##  Project Structuur
 ```
 src/main/java/be/kunstacademie/materiaalverhuur/
 ├── config/
@@ -247,7 +247,7 @@ http://localhost:8080/admin/count
 
 ---
 
-## 💾 Database Schema
+##  Database Schema
 
 Het systeem gebruikt volgende database tabellen (automatisch gegenereerd door Hibernate):
 
@@ -292,7 +292,7 @@ User (1) ──────── (N) CartItem (N) ──────── (1) 
 
 ---
 
-## 🔐 Security Implementatie
+##  Security Implementatie
 
 ### BCrypt Password Hashing
 
@@ -343,7 +343,7 @@ passwordEncoder.matches(rawPassword, encodedPassword);
 
 ---
 
-## 📝 Code Documentatie
+##  Code Documentatie
 
 ### Belangrijke Classes & Methoden
 
@@ -434,7 +434,7 @@ List searchProducts(@Param("keyword") String keyword);
 
 ---
 
-## 🎨 Frontend Implementatie
+##  Frontend Implementatie
 
 ### Thymeleaf Templates
 
@@ -479,7 +479,7 @@ Details
 
 ---
 
-## 🧪 Testing & Development
+##  Testing & Development
 
 ### Test Data
 
@@ -516,7 +516,7 @@ Wijzig in `application.properties`: `server.port=8081`
 
 ---
 
-## 📚 Bronnen & Tutorials
+##  Bronnen & Tutorials
 
 ### Gebruikte Bronnen & Referenties
 
@@ -616,104 +616,14 @@ https://www.youtube.com/watch?v=ig8k_5nEov4
 https://www.youtube.com/watch?v=gJrjgg1KVL4  
 *Gebruikt voor BCrypt implementatie voorbeelden.*
 
----
-
-## 🤖 AI Tool Gebruik
-
-### Claude AI (Anthropic)
-
-Dit project is ontwikkeld met assistentie van **Claude AI** voor:
-- Code generatie en structuur
-- Best practices advisering
-- Documentatie schrijven
-- Troubleshooting en debugging
-- Security implementatie uitleg
 
 ### Gebruikte Prompts
 
 **Volledige chat geschiedenis beschikbaar op**:  
-[Voeg hier je Claude chat link toe]
+https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d 
 
-#### Belangrijkste Prompts:
 
-1. **Initiële Project Setup**
-```
-   "Doe dit voor mij. We gebruiken WSL setup voor de mySQL database. 
-   Ik gebruik Springboot in IntelliJ IDEA. Een opleiding uit de kunsten 
-   wil een platform ontwikkelen waar studenten materiaal kunnen reserveren..."
-```
 
-2. **Security Implementatie**
-```
-   "Bij de securityconfig.java file krijg ik errors. Expected 1 argument 
-   but found 0. Cannot resolve method 'setUserDetailsService'..."
-```
-
-3. **Data Initialisatie**
-```
-   "Nu zit ik op de browser op localhost: 9000. Ik wil een product intikken 
-   in de zoekbalk maar ik zie dat er geen product gevonden is. Er moeten al 
-   dummy producten staan..."
-```
-
-4. **Git Commits**
-```
-   "Geef me nu ook alle github commits die ik moet geven voor dit project, 
-   in het nederlands"
-```
-
-5. **README Documentatie**
-```
-   "Nu maken we de README.md file aan. Ik geef je de nodige info die er in 
-   moet staan. Ten eerste leg je uit waarover het project gaat..."
-```
-
-### Transparantie Statement
-
-Alle code is gegenereerd met AI assistentie maar volledig:
-- ✅ Begrepen door de developer
-- ✅ Aangepast aan project requirements
-- ✅ Getest en geverifieerd
-- ✅ Gedocumenteerd met eigen begrip
-
-**Geen directe copy-paste** van code zonder begrip. Alle implementaties zijn uitgelegd en gevalideerd.
-
----
-
-## 👥 Auteur & Contact
-
-**Student**: [Je Naam]  
-**Opleiding**: [Je Opleiding/School]  
-**Vak**: Enterprise Applications  
-**Academiejaar**: 2024-2025  
-**Datum**: December 2025
-
-**Consultant**: David Van Steertegem  
-
----
-
-## 📄 Licentie
-
-Dit project is ontwikkeld voor educatieve doeleinden als onderdeel van een schoolopdracht.
-
----
-
-## 🔮 Toekomstige Uitbreidingen
-
-Mogelijke verbeteringen voor volgende versies:
-
-1. **Email Notificaties**: Automatische bevestiging bij reservatie
-2. **Admin Dashboard**: Volledige CRUD voor producten en gebruikers
-3. **Beschikbaarheids Kalender**: Visuele weergave van verhuurperiodes
-4. **Payment Integration**: Online betalingen via Stripe/Mollie
-5. **Real-time Voorraad**: WebSocket updates voor live beschikbaarheid
-6. **PDF Generatie**: Downloadbare reservatiebevestigingen
-7. **Meerdere Locaties**: Support voor verschillende afhaallocaties
-8. **Rating Systeem**: Reviews en ratings voor materiaal
-9. **Damage Reporting**: Schade rapportage bij retour
-10. **Analytics Dashboard**: Verhuur statistieken en rapporten
-
----
 
 ## ⚠️ Belangrijke Opmerkingen
 
@@ -729,12 +639,7 @@ Mogelijke verbeteringen voor volgende versies:
 - ✅ Setup database backups
 - ✅ Use environment variables voor credentials
 
-### Bekende Limitaties
 
-- Geen concurrent reservation handling (twee users kunnen zelfde item tegelijk reserveren)
-- Geen automatische cleanup van verlopen cart items
-- Geen email verificatie bij registratie
-- Geen "vergeten wachtwoord" functionaliteit
-- Admin panel is basis en niet volledig beveiligd
 
 ---
+
