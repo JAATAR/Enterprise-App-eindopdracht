@@ -625,21 +625,22 @@ https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d
 
 
 
-## ⚠️ Belangrijke Opmerkingen
+##  Belangrijke Opmerkingen
 
 ### Development vs Production
 
 **VOOR PRODUCTIE**:
-- ❌ Verwijder `/admin` endpoints of beveilig met ADMIN role
-- ❌ Wijzig default test credentials
-- ❌ Set `spring.jpa.hibernate.ddl-auto=validate` (NIET update!)
-- ❌ Verhoog BCrypt cost factor naar 12+
-- ✅ Enable HTTPS
-- ✅ Configureer proper error pages
-- ✅ Setup database backups
-- ✅ Use environment variables voor credentials
+-  Verwijder `/admin` endpoints of beveilig met ADMIN role
+-  Wijzig default test credentials
+-  Set `spring.jpa.hibernate.ddl-auto=validate` (NIET update!)
+-  Verhoog BCrypt cost factor naar 12+
+-  Enable HTTPS
+-  Configureer proper error pages
+-  Setup database backups
+-  Use environment variables voor credentials
 
 
 
 ---
+
 
