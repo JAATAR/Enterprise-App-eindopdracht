@@ -14,15 +14,15 @@ Dit is een **proof of concept** met een beperkte catalogus van ongeveer 10 diver
 
 ---
 
-## Functionele Vereisten (Volledig Geïmplementeerd)
+## ✅ Functionele Vereisten (Volledig Geïmplementeerd)
 
-- **Volledige catalogus**: Overzicht van alle beschikbare materialen
-- **Categorie filtering**: Filteren op Belichting, Kabels, Controlepanelen en Podiumelementen
-- **Zoekfunctie**: Zoeken in productnamen en beschrijvingen
-- **Winkelmandje**: Toevoegen, verwijderen en beheren van reservaties
-- **Checkout systeem**: Bevestigingspagina met uniek reservatienummer
-- **Gebruikersregistratie**: Volledige registratie voor nieuwe studenten
-- **Veilig login systeem**: Spring Security met BCrypt password hashing en automatische salting
+- ✅ **Volledige catalogus**: Overzicht van alle beschikbare materialen
+- ✅ **Categorie filtering**: Filteren op Belichting, Kabels, Controlepanelen en Podiumelementen
+- ✅ **Zoekfunctie**: Zoeken in productnamen en beschrijvingen
+- ✅ **Winkelmandje**: Toevoegen, verwijderen en beheren van reservaties
+- ✅ **Checkout systeem**: Bevestigingspagina met uniek reservatienummer
+- ✅ **Gebruikersregistratie**: Volledige registratie voor nieuwe studenten
+- ✅ **Veilig login systeem**: Spring Security met BCrypt password hashing en automatische salting
 
 ---
 
@@ -31,276 +31,710 @@ Dit is een **proof of concept** met een beperkte catalogus van ongeveer 10 diver
 ### Backend
 - **Java 17/21**
 - **Spring Boot 4.0.0**
-- **Spring Security 7.0.0**
-- **Spring Data JPA**
-- **Hibernate**
-- **BCrypt**
+- **Spring Security 7.0.0** - Authenticatie en autorisatie
+- **Spring Data JPA** - Database abstractie
+- **Hibernate 7.1.8** - ORM Framework
+- **BCrypt** - Password hashing met automatische salt generatie
 
 ### Frontend
-- **Thymeleaf**
-- **Bootstrap 5**
+- **Thymeleaf** - Server-side template engine
+- **Bootstrap 5.3.0** - CSS framework voor responsive design
 - **HTML5 & CSS3**
 
 ### Database
-- **MySQL 8**
-- **WSL Linux omgeving**
+- **MySQL 8.0** - Relationele database
+- **WSL (Windows Subsystem for Linux)** - Linux omgeving voor MySQL server
 
-### Development Tools
-- **Maven**
-- **Lombok**
-- **IntelliJ IDEA**
+### Build & Development Tools
+- **Maven** - Dependency management en build tool
+- **Lombok** - Boilerplate code reductie
+- **IntelliJ IDEA** - IDE
 
 ---
 
 ## 📁 Project Structuur
-
+```
 src/main/java/be/kunstacademie/materiaalverhuur/
 ├── config/
-│ ├── SecurityConfig.java
-│ └── DataInitializer.java
+│   ├── SecurityConfig.java           # Spring Security configuratie
+│   └── DataInitializer.java          # Test data initialisatie
 ├── controller/
-│ ├── ProductController.java
-│ ├── CartController.java
-│ ├── AuthController.java
-│ ├── CheckoutController.java
-│ └── AdminController.java
+│   ├── ProductController.java        # Catalogus en product endpoints
+│   ├── CartController.java           # Winkelmandje functionaliteit
+│   ├── AuthController.java           # Login en registratie
+│   ├── CheckoutController.java       # Checkout proces
+│   └── AdminController.java          # Admin/test endpoints
 ├── model/
-│ ├── Product.java
-│ ├── Category.java
-│ ├── User.java
-│ ├── CartItem.java
-│ ├── Order.java
-│ └── OrderItem.java
+│   ├── Product.java                  # Product entiteit
+│   ├── Category.java                 # Categorie entiteit
+│   ├── User.java                     # Gebruiker entiteit
+│   ├── CartItem.java                 # Winkelmandje item
+│   ├── Order.java                    # Bestelling entiteit
+│   └── OrderItem.java                # Bestelling detail
 ├── repository/
-│ ├── ProductRepository.java
-│ ├── CategoryRepository.java
-│ ├── UserRepository.java
-│ ├── CartItemRepository.java
-│ └── OrderRepository.java
+│   ├── ProductRepository.java        # Product data access
+│   ├── CategoryRepository.java       # Categorie data access
+│   ├── UserRepository.java           # User data access
+│   ├── CartItemRepository.java       # Cart data access
+│   └── OrderRepository.java          # Order data access
 ├── service/
-│ ├── ProductService.java
-│ ├── CartService.java
-│ ├── UserService.java
-│ └── OrderService.java
+│   ├── ProductService.java           # Product business logica
+│   ├── CartService.java              # Cart business logica
+│   ├── UserService.java              # User management & authenticatie
+│   └── OrderService.java             # Order processing
 └── EnterpriseAppEindopdrachtApplication.java
-
-shell
-Copier le code
+```
 
 ### Frontend Templates
+```
 src/main/resources/templates/
-├── catalog.html
-├── product-detail.html
-├── cart.html
-├── checkout.html
-├── confirmation.html
-├── login.html
-├── register.html
-└── orders.html
-
-yaml
-Copier le code
+├── catalog.html                      # Product catalogus
+├── product-detail.html               # Product detail pagina
+├── cart.html                         # Winkelmandje
+├── checkout.html                     # Checkout pagina
+├── confirmation.html                 # Bevestigingspagina
+├── login.html                        # Login formulier
+├── register.html                     # Registratie formulier
+└── orders.html                       # Bestellingsoverzicht
+```
 
 ---
 
 ## 🔧 Setup Instructies
 
 ### 1. Vereisten
-- Java 17+
-- Maven 3.8+
-- IntelliJ IDEA
-- WSL + Ubuntu
-- MySQL Server
 
-### 2. MySQL Setup via WSL
+- **Java JDK 17 of hoger** geïnstalleerd
+- **Maven 3.8+** geïnstalleerd
+- **IntelliJ IDEA** (aanbevolen)
+- **WSL** voor Windows gebruikers
+- **MySQL Server 8.0+**
 
-#### Installatie
+### 2. MySQL Database Setup via WSL
 
+#### WSL Installatie (Windows)
 ```bash
+# In PowerShell (als Administrator)
 wsl --install
-sudo apt update && sudo apt upgrade
+```
+
+#### Linux & MySQL Setup
+```bash
+# Update packages
+sudo apt update
+sudo apt upgrade
+
+# Installeer MySQL
 sudo apt install mysql-server
+
+# Beveilig MySQL installatie
 sudo mysql_secure_installation
-Root configuratie
-bash
-Copier le code
+```
+
+**Opmerking**: Password validation mag op LOW voor development.
+
+#### MySQL Root User Configuratie
+```bash
+# Start MySQL
 sudo mysql
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Testpassword1234!';
+
+# Configureer root wachtwoord
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test1234';
 exit
-Database aanmaken
-bash
-Copier le code
+```
+
+#### MySQL Autostart (Optioneel)
+```bash
+# MySQL automatisch starten bij WSL boot
+sudo update-rc.d mysql defaults
+```
+
+#### Database Aanmaken
+```bash
+# Start MySQL server
+sudo service mysql start
+
+# Login
 sudo mysql -u root -p
+# Wachtwoord: test1234
+
+# Maak database aan
 CREATE DATABASE materiaalverhuur;
 USE materiaalverhuur;
-Database Schema
-users, user_roles, categories, products,
-cart_items, orders, order_items
-
-Relaties:
-
-scss
-Copier le code
-User (1) ─── (N) CartItem (N) ─── (1) Product
-User (1) ─── (N) Order (1) ─── (N) OrderItem ─── (1) Product
-Product (N) ─── (1) Category
-Security Implementatie
-BCrypt Password Hashing
-Automatische salt
-
-Adaptive hashing
-
-Rainbow table resistant
-
-Voorbeeld:
-
-perl
-Copier le code
-$2a$10$N9qo8uLOickgx2ZMRZoMye/IiefvwHBXQRfD8.qXN8k2Jz2w6N.yC
-Spring Security
-Form login
-
-Custom login pagina
-
-Role-based access
-
-CSRF enabled
-
-BCrypt encoder
-
- Frontend (Thymeleaf + Bootstrap)
-Belangrijkste features:
-
-Loops & conditionals
-
-Form binding
-
-URL helpers
-
-Responsive UI
-
-Testing & Development
-Testdata via DataInitializer
-
-Admin test endpoints:
-
-/admin/count
-
-/admin/init-data
-
-/admin/delete-all
+exit
 ```
-##  Bronnen & Tutorials
-###  Gebruikte Bronnen & Referenties
--###🔹 Officiële Documentatie
 
-Spring Boot Documentation
-https://docs.spring.io/spring-boot/docs/current/reference/html/
+**Alternatief**: Maak een aparte database user aan (aanbevolen voor productie):
+```sql
+CREATE DATABASE materiaalverhuur;
+CREATE USER 'springuser'@'localhost' IDENTIFIED BY 'ThePassword';
+GRANT ALL PRIVILEGES ON materiaalverhuur.* TO 'springuser'@'localhost';
+FLUSH PRIVILEGES;
+```
 
-Gebruikt voor algemene Spring Boot setup, application properties configuratie.
+### 3. Project Setup in IntelliJ IDEA
 
-Spring Security Reference
-https://docs.spring.io/spring-security/reference/index.html
+1. **Clone of open het project**
+   - File → Open → Selecteer project folder
 
-Gebruikt voor security configuratie, BCrypt implementatie.
+2. **Maven Dependencies**
+   - Maven zal automatisch dependencies downloaden
+   - Wacht tot indexering compleet is
 
-Spring Data JPA
-https://docs.spring.io/spring-data/jpa/docs/current/reference/html/
+3. **Lombok Plugin**
+   - Settings → Plugins → Zoek "Lombok"
+   - Installeer en herstart IntelliJ
+   - Settings → Build → Compiler → Annotation Processors
+   - Vink aan: "Enable annotation processing"
 
-Gebruikt voor repository patterns, custom queries, entity mappings.
+### 4. Configuratie
 
-Thymeleaf Documentation
-https://www.thymeleaf.org/documentation.html
+Bewerk `src/main/resources/application.properties`:
+```properties
+# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/materiaalverhuur
+spring.datasource.username=root
+spring.datasource.password=test1234
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-Gebruikt voor template syntax, form handling, conditionals.
+# JPA/Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.properties.hibernate.format_sql=true
 
-Hibernate ORM Documentation
-https://hibernate.org/orm/documentation/
+# Server Configuration
+server.port=8080
 
-Gebruikt voor entity-relaties, cascade types, fetch strategies.
+# Thymeleaf Configuration
+spring.thymeleaf.cache=false
+```
 
-🔹 Security & Best Practices
+**Belangrijk**: Pas gebruikersnaam en wachtwoord aan indien je andere credentials gebruikt.
 
-OWASP Password Storage Cheat Sheet
-https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+### 5. Applicatie Starten
 
-Gebruikt voor BCrypt best practices, salt usage, veilig wachtwoordbeheer.
+**Via IntelliJ:**
+- Klik op groene Play knop naast `EnterpriseAppEindopdrachtApplication`
+- Of: Rechtermuisknop op main class → Run
 
-BCrypt – Wikipedia
-https://en.wikipedia.org/wiki/Bcrypt
+**Via Terminal:**
+```bash
+./mvnw spring-boot:run
+```
 
-Gebruikt voor conceptueel begrip van het algoritme.
+### 6. Test Data Initialisatie
 
-Spring Security BCrypt Encoder API
-https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html
+De applicatie maakt automatisch test data aan bij eerste opstart via `DataInitializer.java`.
 
-Gebruikt voor configuratie van BCryptPasswordEncoder.
+**Handmatig data toevoegen** (indien nodig):
+```
+http://localhost:8080/admin/init-data
+```
 
-🔹 Tutorials & Guides
+**Data controleren:**
+```
+http://localhost:8080/admin/count
+```
 
-Spring Boot + MySQL (Spring.io Guide)
-https://spring.io/guides/gs/accessing-data-mysql/
+### 7. Toegang tot Applicatie
 
-Gebruikt voor database setup en JPA configuratie.
+- **URL**: `http://localhost:8080`
+- **Test Account**:
+  - Username: `student`
+  - Password: `password123`
+  - Email: `student@kunstacademie.be`
 
-Baeldung – Spring Security met Thymeleaf
-https://www.baeldung.com/spring-security-thymeleaf
+---
 
-Gebruikt voor login-form integratie.
+## 💾 Database Schema
 
-Baeldung – Spring Boot Security Auto Configuration
-https://www.baeldung.com/spring-boot-security-autoconfiguration
+Het systeem gebruikt volgende database tabellen (automatisch gegenereerd door Hibernate):
 
-Gebruikt voor het begrijpen van security defaults.
+### Entiteiten
 
-Bootstrap 5 Documentation
-https://getbootstrap.com/docs/5.3/
+**users**
+- User accounts met BCrypt ge-hashte wachtwoorden
+- Bevat: username, email, password (hashed), firstName, lastName, studentNumber
 
-Gebruikt voor front-end layout, grids, formulieren, componenten.
+**user_roles**
+- Junction table voor user rollen
+- Mogelijke rollen: STUDENT, ADMIN
 
-🔹 Development Tools
+**categories**
+- Product categorieën (Belichting, Kabels, Controlepanelen, Podiumelementen)
 
-Project Lombok
-https://projectlombok.org/
+**products**
+- Verhuurbaar materiaal met prijs per dag en voorraad
 
-Gebruikt voor @Data, @Getter, @Setter, @RequiredArgsConstructor.
+**cart_items**
+- Tijdelijke reservaties in winkelmandje
+- Bevat: product, quantity, startDate, endDate
 
-MySQL via WSL (Microsoft Docs)
-https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database
+**orders**
+- Bevestigde reservaties met bevestigingsnummer
 
-Gebruikt voor MySQL installatie & configuratie binnen WSL.
+**order_items**
+- Details van elke bestelling
 
-Maven Official Documentation
-https://maven.apache.org/guides/
+### Entity Relationships
+```
+User (1) ──────── (N) CartItem (N) ──────── (1) Product
+  │                                              │
+  │                                         (N) (1)
+  │                                              │
+  └────── (N) Order (1) ─── (N) OrderItem ──────┘
+                                                 │
+                                            (N) (1)
+                                                 │
+                                             Category
+```
 
-Gebruikt voor dependency-management en build lifecycle.
+---
 
-🔹 Code Voorbeelden & Inspiratie
+## 🔐 Security Implementatie
 
-Spring PetClinic (Sample Project)
-https://github.com/spring-projects/spring-petclinic
+### BCrypt Password Hashing
 
-Gebruikt voor projectstructuur en best-practice voorbeelden.
+Het systeem gebruikt **BCrypt** voor veilige wachtwoord opslag:
 
-Spring Security Samples
-https://github.com/spring-projects/spring-security-samples
+#### Waarom BCrypt?
 
-Gebruikt voor configuratievoorbeelden en authentication flows.
+- **Automatische Salt Generatie**: Elke wachtwoord krijgt unieke salt
+- **Adaptive Hashing**: 2^10 hashing rounds (configureerbaar)
+- **Rainbow Table Resistant**: Door salting zijn rainbow table attacks onmogelijk
+- **Future-Proof**: Cost factor kan verhoogd worden
 
-🔹 Externe Video- & ChatGPT-bronnen
+#### Hash Structuur
 
-ChatGPT — Project Assistance
-https://chatgpt.com/share/693c38a9-d170-8007-88f8-b2dd29979a3c
+Een BCrypt hash ziet er zo uit:
+```
+$2a$10$N9qo8uLOickgx2ZMRZoMye/IiefvwHBXQRfD8.qXN8k2Jz2w6N.yC
+│  │ │  │                                           │
+│  │ │  └─ Salt (22 chars)                          │
+│  │ └─ Cost factor (10 = 2^10 rounds)              │
+│  └─ Minor version                                 │
+└─ Algorithm identifier                             └─ Hash (31 chars)
+```
 
-YouTube Tutorial 1 — Spring Boot Login/Register
-https://www.youtube.com/watch?v=ig8k_5nEov4
+#### Implementatie
 
-YouTube Tutorial 2 — Spring Boot Security + BCrypt
-https://www.youtube.com/watch?v=gJrjgg1KVL4
+**Bij registratie** (`UserService.java`):
+```java
+user.setPassword(passwordEncoder.encode(user.getPassword()));
+```
 
+**Bij login** (automatisch via Spring Security):
+```java
+passwordEncoder.matches(rawPassword, encodedPassword);
+```
 
+### Spring Security Configuratie
 
+- **Form-based Authentication**: Custom login pagina
+- **Session Management**: Max 1 sessie per gebruiker
+- **Password Encoding**: BCrypt met strength 10
+- **CSRF Protection**: Enabled (standaard)
+- **Authorization**: Role-based access control
 
+**Publieke endpoints**: `/`, `/register`, `/login`, `/products`  
+**Beveiligde endpoints**: `/cart`, `/checkout`, `/orders`  
+**Admin endpoints**: `/admin` (tijdelijk toegankelijk voor development)
 
+---
 
+## 📝 Code Documentatie
 
+### Belangrijke Classes & Methoden
+
+#### ProductService.java
+Service voor product-gerelateerde business logica.
+
+**`searchProducts(String keyword)`**
+- Zoekt producten op basis van keyword in naam en beschrijving
+- Gebruikt JPQL query met LIKE operator (case-insensitive)
+- Returns: Gefilterde lijst van producten
+
+**`isProductAvailable(Long productId, int requestedQuantity)`**
+- Controleert voorraad beschikbaarheid
+- Business rule: Product moet available=true EN stock >= requested zijn
+- Returns: Boolean indicator
+
+#### CartService.java
+Service voor winkelmandje beheer en prijsberekening.
+
+**`addToCart(User user, Long productId, int quantity, LocalDate startDate, LocalDate endDate)`**
+- Voegt product toe met validaties
+- Validaties: voorraad check, datum validatie, quantity positief
+- Berekent automatisch aantal verhuurdagen
+- Throws: RuntimeException bij validatie fouten
+
+**`calculateCartTotal(User user)`**
+- Berekent totale prijs van winkelmandje
+- Formule: Σ (pricePerDay × quantity × rentalDays) voor elk item
+- Returns: BigDecimal voor nauwkeurige geldbedragen
+
+#### UserService.java
+Service voor user management en authenticatie. Implementeert `UserDetailsService` voor Spring Security integratie.
+
+**`registerUser(User user)`**
+- Registreert nieuwe gebruiker met beveiligde wachtwoord opslag
+- Proces: 
+  1. Valideer username/email uniciteit
+  2. Hash wachtwoord met BCrypt (salt automatisch)
+  3. Ken standaard rol toe (STUDENT)
+  4. Persist naar database
+- BCrypt genereert automatisch salt, geen aparte opslag nodig
+
+**`loadUserByUsername(String username)`**
+- Spring Security integratie voor authenticatie
+- Converteert database User naar Spring Security UserDetails
+- Role mapping: "STUDENT" wordt "ROLE_STUDENT" authority
+
+#### OrderService.java
+Service voor order processing en checkout workflow.
+
+**`checkout(User user)`**
+- `@Transactional`: Atomic operation - alles slaagt of niets
+- Proces:
+  1. Valideer niet-leeg winkelmandje
+  2. Creëer Order entity met CONFIRMED status
+  3. Converteer CartItems naar OrderItems
+  4. Genereer uniek bevestigingsnummer (formaat: CONF-XXXXXXXX)
+  5. Persist order
+  6. Leeg winkelmandje
+- Returns: Order met bevestigingsnummer
+
+#### CartItem.java
+Model class met business logic methoden.
+
+**`getRentalDays()`**
+- Berekent aantal verhuurdagen inclusief start- en einddatum
+- Gebruikt: `ChronoUnit.DAYS.between(startDate, endDate) + 1`
+
+**`getTotalPrice()`**
+- Berekent totaalprijs voor dit cart item
+- Formule: `pricePerDay × quantity × rentalDays`
+
+### Repository Layer
+
+Alle repositories extenden `JpaRepository` voor CRUD operaties.
+
+**Custom Query Methods** (Spring Data JPA naming convention):
+- `findByUsername()` - Zoekt user op basis van username
+- `findByCategoryId()` - Filtert producten per categorie
+- `findByAvailableTrue()` - Alleen beschikbare producten
+- `searchProducts()` - Custom JPQL query voor zoekfunctionaliteit
+
+**JPQL Query Voorbeeld** (`ProductRepository.java`):
+```java
+@Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+List searchProducts(@Param("keyword") String keyword);
+```
+
+---
+
+## 🎨 Frontend Implementatie
+
+### Thymeleaf Templates
+
+**Template Engine**: Server-side rendering met Thymeleaf  
+**Styling**: Bootstrap 5 voor responsive design  
+**Forms**: HTML5 validatie + server-side validatie
+
+#### Belangrijke Thymeleaf Features
+
+**Conditionals**:
+```html
+
+    Geen producten gevonden.
+
+```
+
+**Loops**:
+```html
+
+    
+
+```
+
+**URL Generation**:
+```html
+Details
+```
+
+**Form Binding**:
+```html
+
+    
+
+```
+
+### User Experience Features
+
+- **Flash Messages**: Success/Error feedback via RedirectAttributes
+- **Client-side Validation**: HTML5 attributes (required, min, type)
+- **Server-side Validation**: Service layer validaties
+- **Responsive Design**: Mobile-friendly via Bootstrap grid system
+
+---
+
+## 🧪 Testing & Development
+
+### Test Data
+
+**Automatische Initialisatie**: `DataInitializer.java` maakt test data aan:
+- 4 Categorieën
+- 10 Producten verdeeld over categorieën
+- 1 Test gebruiker (student/password123)
+
+### Admin Endpoints (Development Only)
+
+**WAARSCHUWING**: Verwijder of beveilig deze in productie!
+
+- `GET /admin/count` - Aantal records per tabel
+- `GET /admin/init-data` - Handmatig test data aanmaken
+- `GET /admin/delete-all` - Verwijder alle data (GEVAARLIJK)
+
+### Troubleshooting
+
+**Database Connection Errors**:
+```bash
+# Check MySQL status
+sudo service mysql status
+
+# Start MySQL
+sudo service mysql start
+```
+
+**Port Already in Use**:
+Wijzig in `application.properties`: `server.port=8081`
+
+**Lombok Not Working**:
+- Installeer Lombok plugin in IntelliJ
+- Enable annotation processing in settings
+
+---
+
+## 📚 Bronnen & Tutorials
+
+### Gebruikte Bronnen & Referenties
+
+### 🔹 Officiële Documentatie
+
+**Spring Boot Documentation**  
+https://docs.spring.io/spring-boot/docs/current/reference/html/  
+*Gebruikt voor algemene Spring Boot setup, application properties configuratie.*
+
+**Spring Security Reference**  
+https://docs.spring.io/spring-security/reference/index.html/  
+*Gebruikt voor security configuratie, BCrypt implementatie.*
+
+**Spring Data JPA**  
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/  
+*Gebruikt voor repository patterns, custom queries, entity mappings.*
+
+**Thymeleaf Documentation**  
+https://www.thymeleaf.org/documentation.html  
+*Gebruikt voor template syntax, form handling, conditionals.*
+
+**Hibernate ORM Documentation**  
+https://hibernate.org/orm/documentation/  
+*Gebruikt voor entity-relaties, cascade types, fetch strategies.*
+
+### 🔹 Security & Best Practices
+
+**OWASP Password Storage Cheat Sheet**  
+https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html  
+*Gebruikt voor BCrypt best practices, salt usage, veilig wachtwoordbeheer.*
+
+**BCrypt – Wikipedia**  
+https://en.wikipedia.org/wiki/Bcrypt  
+*Gebruikt voor conceptueel begrip van het algoritme.*
+
+**Spring Security BCrypt Encoder API**  
+https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html  
+*Gebruikt voor configuratie van BCryptPasswordEncoder.*
+
+### 🔹 Tutorials & Guides
+
+**Spring Boot + MySQL (Spring.io Guide)**  
+https://spring.io/guides/gs/accessing-data-mysql/  
+*Gebruikt voor database setup en JPA configuratie.*
+
+**Baeldung – Spring Security met Thymeleaf**  
+https://www.baeldung.com/spring-security-thymeleaf  
+*Gebruikt voor login-form integratie.*
+
+**Baeldung – Spring Boot Security Auto Configuration**  
+https://www.baeldung.com/spring-boot-security-autoconfiguration  
+*Gebruikt voor het begrijpen van security defaults.*
+
+**Bootstrap 5 Documentation**  
+https://getbootstrap.com/docs/5.3/  
+*Gebruikt voor front-end layout, grids, formulieren, componenten.*
+
+### 🔹 Development Tools
+
+**Project Lombok**  
+https://projectlombok.org/  
+*Gebruikt voor @Data, @Getter, @Setter, @RequiredArgsConstructor.*
+
+**MySQL via WSL (Microsoft Docs)**  
+https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database  
+*Gebruikt voor MySQL installatie & configuratie binnen WSL.*
+
+**Maven Official Documentation**  
+https://maven.apache.org/guides/  
+*Gebruikt voor dependency-management en build lifecycle.*
+
+### 🔹 Code Voorbeelden & Inspiratie
+
+**Spring PetClinic (Sample Project)**  
+https://github.com/spring-projects/spring-petclinic  
+*Gebruikt voor projectstructuur en best-practice voorbeelden.*
+
+**Spring Security Samples**  
+https://github.com/spring-projects/spring-security-samples  
+*Gebruikt voor configuratievoorbeelden en authentication flows.*
+
+### 🔹 Externe Video- & AI-bronnen
+
+**Claude AI — Project Assistance**  
+https://claude.ai  
+*Gebruikt voor code generatie, architecture design, debugging assistance.*
+
+**ChatGPT — Project Assistance**  
+https://chatgpt.com/share/693c38a9-d170-8007-88f8-b2dd29979a3c  
+*Gebruikt voor aanvullende code voorbeelden en troubleshooting.*
+
+**YouTube Tutorial 1 — Spring Boot Login/Register**  
+https://www.youtube.com/watch?v=ig8k_5nEov4  
+*Gebruikt voor begrip van Spring Security login flow.*
+
+**YouTube Tutorial 2 — Spring Boot Security + BCrypt**  
+https://www.youtube.com/watch?v=gJrjgg1KVL4  
+*Gebruikt voor BCrypt implementatie voorbeelden.*
+
+---
+
+## 🤖 AI Tool Gebruik
+
+### Claude AI (Anthropic)
+
+Dit project is ontwikkeld met assistentie van **Claude AI** voor:
+- Code generatie en structuur
+- Best practices advisering
+- Documentatie schrijven
+- Troubleshooting en debugging
+- Security implementatie uitleg
+
+### Gebruikte Prompts
+
+**Volledige chat geschiedenis beschikbaar op**:  
+[Voeg hier je Claude chat link toe]
+
+#### Belangrijkste Prompts:
+
+1. **Initiële Project Setup**
+```
+   "Doe dit voor mij. We gebruiken WSL setup voor de mySQL database. 
+   Ik gebruik Springboot in IntelliJ IDEA. Een opleiding uit de kunsten 
+   wil een platform ontwikkelen waar studenten materiaal kunnen reserveren..."
+```
+
+2. **Security Implementatie**
+```
+   "Bij de securityconfig.java file krijg ik errors. Expected 1 argument 
+   but found 0. Cannot resolve method 'setUserDetailsService'..."
+```
+
+3. **Data Initialisatie**
+```
+   "Nu zit ik op de browser op localhost: 9000. Ik wil een product intikken 
+   in de zoekbalk maar ik zie dat er geen product gevonden is. Er moeten al 
+   dummy producten staan..."
+```
+
+4. **Git Commits**
+```
+   "Geef me nu ook alle github commits die ik moet geven voor dit project, 
+   in het nederlands"
+```
+
+5. **README Documentatie**
+```
+   "Nu maken we de README.md file aan. Ik geef je de nodige info die er in 
+   moet staan. Ten eerste leg je uit waarover het project gaat..."
+```
+
+### Transparantie Statement
+
+Alle code is gegenereerd met AI assistentie maar volledig:
+- ✅ Begrepen door de developer
+- ✅ Aangepast aan project requirements
+- ✅ Getest en geverifieerd
+- ✅ Gedocumenteerd met eigen begrip
+
+**Geen directe copy-paste** van code zonder begrip. Alle implementaties zijn uitgelegd en gevalideerd.
+
+---
+
+## 👥 Auteur & Contact
+
+**Student**: [Je Naam]  
+**Opleiding**: [Je Opleiding/School]  
+**Vak**: Enterprise Applications  
+**Academiejaar**: 2024-2025  
+**Datum**: December 2025
+
+**Consultant**: David Van Steertegem  
+
+---
+
+## 📄 Licentie
+
+Dit project is ontwikkeld voor educatieve doeleinden als onderdeel van een schoolopdracht.
+
+---
+
+## 🔮 Toekomstige Uitbreidingen
+
+Mogelijke verbeteringen voor volgende versies:
+
+1. **Email Notificaties**: Automatische bevestiging bij reservatie
+2. **Admin Dashboard**: Volledige CRUD voor producten en gebruikers
+3. **Beschikbaarheids Kalender**: Visuele weergave van verhuurperiodes
+4. **Payment Integration**: Online betalingen via Stripe/Mollie
+5. **Real-time Voorraad**: WebSocket updates voor live beschikbaarheid
+6. **PDF Generatie**: Downloadbare reservatiebevestigingen
+7. **Meerdere Locaties**: Support voor verschillende afhaallocaties
+8. **Rating Systeem**: Reviews en ratings voor materiaal
+9. **Damage Reporting**: Schade rapportage bij retour
+10. **Analytics Dashboard**: Verhuur statistieken en rapporten
+
+---
+
+## ⚠️ Belangrijke Opmerkingen
+
+### Development vs Production
+
+**VOOR PRODUCTIE**:
+- ❌ Verwijder `/admin` endpoints of beveilig met ADMIN role
+- ❌ Wijzig default test credentials
+- ❌ Set `spring.jpa.hibernate.ddl-auto=validate` (NIET update!)
+- ❌ Verhoog BCrypt cost factor naar 12+
+- ✅ Enable HTTPS
+- ✅ Configureer proper error pages
+- ✅ Setup database backups
+- ✅ Use environment variables voor credentials
+
+### Bekende Limitaties
+
+- Geen concurrent reservation handling (twee users kunnen zelfde item tegelijk reserveren)
+- Geen automatische cleanup van verlopen cart items
+- Geen email verificatie bij registratie
+- Geen "vergeten wachtwoord" functionaliteit
+- Admin panel is basis en niet volledig beveiligd
+
+---
