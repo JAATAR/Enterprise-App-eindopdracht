@@ -26,7 +26,7 @@ Dit is een **proof of concept** met een beperkte catalogus van ongeveer 10 diver
 
 ---
 
-## 🛠️ Technologie Stack
+##  Technologie Stack
 
 ### Backend
 - **Java 17/21**
@@ -642,5 +642,6 @@ https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d
 
 
 ---
+
 
 
