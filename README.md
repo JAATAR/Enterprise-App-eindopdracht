@@ -139,7 +139,7 @@ sudo mysql_secure_installation
 sudo mysql
 
 # Configureer root wachtwoord
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test1234';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Testpassword1234!';
 exit
 ```
 
@@ -156,7 +156,7 @@ sudo service mysql start
 
 # Login
 sudo mysql -u root -p
-# Wachtwoord: test1234
+# Wachtwoord: Testpassword1234!
 
 # Maak database aan
 CREATE DATABASE materiaalverhuur;
@@ -168,7 +168,7 @@ exit
 ```sql
 CREATE DATABASE materiaalverhuur;
 CREATE USER 'springuser'@'localhost' IDENTIFIED BY 'ThePassword';
-GRANT ALL PRIVILEGES ON materiaalverhuur.* TO 'springuser'@'localhost';
+GRANT ALL PRIVILEGES ON materiaalverhuur.* TO 'root'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
@@ -194,7 +194,7 @@ Bewerk `src/main/resources/application.properties`:
 # Database Configuration
 spring.datasource.url=jdbc:mysql://localhost:3306/materiaalverhuur
 spring.datasource.username=root
-spring.datasource.password=test1234
+spring.datasource.password=Testpassword1234!
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 # JPA/Hibernate Configuration
@@ -204,7 +204,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.properties.hibernate.format_sql=true
 
 # Server Configuration
-server.port=8080
+server.port=9000
 
 # Thymeleaf Configuration
 spring.thymeleaf.cache=false
@@ -229,17 +229,14 @@ De applicatie maakt automatisch test data aan bij eerste opstart via `DataInitia
 
 **Handmatig data toevoegen** (indien nodig):
 ```
-http://localhost:8080/admin/init-data
+http://localhost:9000/login
 ```
 
-**Data controleren:**
-```
-http://localhost:8080/admin/count
-```
+
 
 ### 7. Toegang tot Applicatie
 
-- **URL**: `http://localhost:8080`
+- **URL**: `http://localhost:9000`
 - **Test Account**:
   - Username: `student`
   - Password: `password123`
@@ -451,13 +448,6 @@ List searchProducts(@Param("keyword") String keyword);
 
 ```
 
-**Loops**:
-```html
-
-    
-
-```
-
 **URL Generation**:
 ```html
 Details
@@ -621,6 +611,7 @@ https://www.youtube.com/watch?v=gJrjgg1KVL4
 
 **Volledige chat geschiedenis beschikbaar op**:  
 https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d 
+
 
 
 
