@@ -274,18 +274,7 @@ Het systeem gebruikt volgende database tabellen (automatisch gegenereerd door Hi
 **order_items**
 - Details van elke bestelling
 
-### Entity Relationships
-```
-User (1) ──────── (N) CartItem (N) ──────── (1) Product
-  │                                              │
-  │                                         (N) (1)
-  │                                              │
-  └────── (N) Order (1) ─── (N) OrderItem ──────┘
-                                                 │
-                                            (N) (1)
-                                                 │
-                                             Category
-```
+
 
 ---
 
@@ -302,17 +291,6 @@ Het systeem gebruikt **BCrypt** voor veilige wachtwoord opslag:
 - **Rainbow Table Resistant**: Door salting zijn rainbow table attacks onmogelijk
 - **Future-Proof**: Cost factor kan verhoogd worden
 
-#### Hash Structuur
-
-Een BCrypt hash ziet er zo uit:
-```
-$2a$10$N9qo8uLOickgx2ZMRZoMye/IiefvwHBXQRfD8.qXN8k2Jz2w6N.yC
-│  │ │  │                                           │
-│  │ │  └─ Salt (22 chars)                          │
-│  │ └─ Cost factor (10 = 2^10 rounds)              │
-│  └─ Minor version                                 │
-└─ Algorithm identifier                             └─ Hash (31 chars)
-```
 
 #### Implementatie
 
@@ -439,26 +417,7 @@ List searchProducts(@Param("keyword") String keyword);
 **Styling**: Bootstrap 5 voor responsive design  
 **Forms**: HTML5 validatie + server-side validatie
 
-#### Belangrijke Thymeleaf Features
 
-**Conditionals**:
-```html
-
-    Geen producten gevonden.
-
-```
-
-**URL Generation**:
-```html
-Details
-```
-
-**Form Binding**:
-```html
-
-    
-
-```
 
 ### User Experience Features
 
@@ -611,6 +570,7 @@ https://www.youtube.com/watch?v=gJrjgg1KVL4
 
 **Volledige chat geschiedenis beschikbaar op**:  
 https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d 
+
 
 
 
