@@ -401,11 +401,7 @@ Alle repositories extenden `JpaRepository` voor CRUD operaties.
 - `findByAvailableTrue()` - Alleen beschikbare producten
 - `searchProducts()` - Custom JPQL query voor zoekfunctionaliteit
 
-**JPQL Query Voorbeeld** (`ProductRepository.java`):
-```java
-@Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
-List searchProducts(@Param("keyword") String keyword);
-```
+
 
 ---
 
@@ -570,6 +566,7 @@ https://www.youtube.com/watch?v=gJrjgg1KVL4
 
 **Volledige chat geschiedenis beschikbaar op**:  
 https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d 
+
 
 
 
