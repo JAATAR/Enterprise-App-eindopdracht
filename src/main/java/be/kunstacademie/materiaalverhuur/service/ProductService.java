@@ -56,4 +56,21 @@ public class ProductService {
         Product product = getProductById(productId);
         return product.getAvailable() && product.getStockQuantity() >= requestedQuantity;
     }
+
+    /**
+     * Trekt de gehuurde hoeveelheid af van de voorraad bij checkout.
+     * Faalt als de voorraad ondertussen niet meer voldoende is (bv. door een andere bestelling).
+     */
+    @Transactional
+    public void decreaseStock(Long productId, int quantity) {
+        Product product = getProductById(productId);
+        if (product.getStockQuantity() < quantity) {
+            throw new RuntimeException("Onvoldoende voorraad voor product: " + product.getName());
+        }
+        product.setStockQuantity(product.getStockQuantity() - quantity);
+        if (product.getStockQuantity() == 0) {
+            product.setAvailable(false);
+        }
+        productRepository.save(product);
+    }
 }

@@ -19,6 +19,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final CartService cartService;
+    private final ProductService productService;
 
     /**
      * Verwerkt checkout: maakt order van cart items en leegt winkelmandje.
@@ -47,6 +48,8 @@ public class OrderService {
             orderItem.setSubtotal(cartItem.getTotalPrice());
 
             order.getOrderItems().add(orderItem);
+
+            productService.decreaseStock(cartItem.getProduct().getId(), cartItem.getQuantity());
         }
 
         order.setTotalAmount(cartService.calculateCartTotal(user));
