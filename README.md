@@ -537,7 +537,7 @@ https://github.com/spring-projects/spring-security-samples
 ### 🔹 Externe Video- & AI-bronnen
 
 **Claude AI — Project Assistance**  
-https://claude.ai  
+[https://claude.ai  ](https://claude.ai/share/55e60b16-dbbf-4588-8b41-816289642870)
 *Gebruikt voor code generatie, architecture design, debugging assistance.*
 
 **ChatGPT — Project Assistance**  
