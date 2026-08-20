@@ -55,9 +55,10 @@ public class CartController {
     }
 
     @PostMapping("/remove/{id}")
-    public String removeFromCart(@PathVariable Long id, RedirectAttributes redirectAttrs) {
+    public String removeFromCart(@PathVariable Long id, Authentication auth, RedirectAttributes redirectAttrs) {
         try {
-            cartService.removeFromCart(id);
+            User user = userService.findByUsername(auth.getName());
+            cartService.removeFromCart(user, id);
             redirectAttrs.addFlashAttribute("success", "Product verwijderd uit winkelmandje");
         } catch (Exception e) {
             redirectAttrs.addFlashAttribute("error", "Fout bij verwijderen: " + e.getMessage());

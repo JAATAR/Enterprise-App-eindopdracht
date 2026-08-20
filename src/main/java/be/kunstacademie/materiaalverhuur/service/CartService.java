@@ -55,7 +55,14 @@ public class CartService {
     }
 
     @Transactional
-    public void removeFromCart(Long cartItemId) {
+    public void removeFromCart(User user, Long cartItemId) {
+        CartItem cartItem = cartItemRepository.findById(cartItemId)
+                .orElseThrow(() -> new RuntimeException("Winkelmandje item niet gevonden"));
+
+        if (!cartItem.getUser().getId().equals(user.getId())) {
+            throw new RuntimeException("Dit winkelmandje item behoort niet tot uw account");
+        }
+
         cartItemRepository.deleteById(cartItemId);
     }
 

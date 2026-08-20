@@ -55,15 +55,14 @@ Dit is een **proof of concept** met een beperkte catalogus van ongeveer 10 diver
 ##  Project Structuur
 ```
 src/main/java/be/kunstacademie/materiaalverhuur/
-├── config/
+├── Config/
 │   ├── SecurityConfig.java           # Spring Security configuratie
 │   └── DataInitializer.java          # Test data initialisatie
 ├── controller/
 │   ├── ProductController.java        # Catalogus en product endpoints
 │   ├── CartController.java           # Winkelmandje functionaliteit
 │   ├── AuthController.java           # Login en registratie
-│   ├── CheckoutController.java       # Checkout proces
-│   └── AdminController.java          # Admin/test endpoints
+│   └── CheckoutController.java       # Checkout proces
 ├── model/
 │   ├── Product.java                  # Product entiteit
 │   ├── Category.java                 # Categorie entiteit
@@ -189,12 +188,12 @@ FLUSH PRIVILEGES;
 
 ### 4. Configuratie
 
-Bewerk `src/main/resources/application.properties`:
+`src/main/resources/application.properties` leest de database-credentials uit omgevingsvariabelen (niet hardcoded, om veiligheidsredenen):
 ```properties
 # Database Configuration
 spring.datasource.url=jdbc:mysql://localhost:3306/materiaalverhuur
-spring.datasource.username=root
-spring.datasource.password=Testpassword1234!
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 # JPA/Hibernate Configuration
@@ -210,7 +209,7 @@ server.port=9000
 spring.thymeleaf.cache=false
 ```
 
-**Belangrijk**: Pas gebruikersnaam en wachtwoord aan indien je andere credentials gebruikt.
+**Belangrijk**: Zet vóór het opstarten de omgevingsvariabelen `DB_USERNAME` en `DB_PASSWORD` (bv. via een `.env` bestand, IntelliJ run-configuratie, of `export DB_USERNAME=... DB_PASSWORD=...` in je shell) met de credentials van de MySQL user die je hierboven hebt aangemaakt.
 
 ### 5. Applicatie Starten
 
@@ -314,7 +313,7 @@ passwordEncoder.matches(rawPassword, encodedPassword);
 
 **Publieke endpoints**: `/`, `/register`, `/login`, `/products`  
 **Beveiligde endpoints**: `/cart`, `/checkout`, `/orders`  
-**Admin endpoints**: `/admin` (tijdelijk toegankelijk voor development)
+**Admin endpoints**: `/admin/**` is gereserveerd voor de `ADMIN`-rol, maar er zijn momenteel geen admin-controllers geïmplementeerd.
 
 ---
 
@@ -432,14 +431,6 @@ Alle repositories extenden `JpaRepository` voor CRUD operaties.
 - 4 Categorieën
 - 10 Producten verdeeld over categorieën
 - 1 Test gebruiker (student/password123)
-
-### Admin Endpoints (Development Only)
-
-**WAARSCHUWING**: Verwijder of beveilig deze in productie!
-
-- `GET /admin/count` - Aantal records per tabel
-- `GET /admin/init-data` - Handmatig test data aanmaken
-- `GET /admin/delete-all` - Verwijder alle data (GEVAARLIJK)
 
 ### Troubleshooting
 
