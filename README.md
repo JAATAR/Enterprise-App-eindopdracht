@@ -541,7 +541,7 @@ https://github.com/spring-projects/spring-security-samples
 *Gebruikt voor code generatie, architecture design, debugging assistance.*
 
 **ChatGPT — Project Assistance**  
-https://chatgpt.com/share/693c38a9-d170-8007-88f8-b2dd29979a3c  
+[https://chatgpt.com/share/693c38a9-d170-8007-88f8-b2dd29979a3c  ](https://chatgpt.com/share/6a885eba-967c-83eb-9036-4c9271970b73)
 *Gebruikt voor aanvullende code voorbeelden en troubleshooting.*
 
 **YouTube Tutorial 1 — Spring Boot Login/Register**  
@@ -557,6 +557,7 @@ https://www.youtube.com/watch?v=gJrjgg1KVL4
 
 **Volledige chat geschiedenis beschikbaar op**:  
 https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d 
+https://claude.ai/share/55e60b16-dbbf-4588-8b41-816289642870
 
 
 
