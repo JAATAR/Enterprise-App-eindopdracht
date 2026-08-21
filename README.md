@@ -556,8 +556,8 @@ https://www.youtube.com/watch?v=gJrjgg1KVL4
 ### Gebruikte Prompts
 
 **Volledige chat geschiedenis beschikbaar op**:  
-https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d 
-https://claude.ai/share/55e60b16-dbbf-4588-8b41-816289642870
+- https://chatgpt.com/c/68f7a8e1-65a0-8325-ac0e-97a6d799dd2d 
+- https://claude.ai/share/55e60b16-dbbf-4588-8b41-816289642870
 
 
 
